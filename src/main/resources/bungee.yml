@@ -1,0 +1,5 @@
+name: TwitchSync
+version: '${project.version}'
+main: de.kenjih.twitchsync.TwitchSync
+commands:
+  sync:
