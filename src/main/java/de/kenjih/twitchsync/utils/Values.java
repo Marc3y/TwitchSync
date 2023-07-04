@@ -6,9 +6,9 @@ import java.awt.*;
 
 public class Values {
     //Discord
-    public static String Discord_GuildID = "1037069989804515469";
+    public static String Discord_GuildID = "445308722168987648";
     public static String Discord_BotToken = "MTEyNTQ4NTc0MzIzODgwNzU2Mg.GmlX2E.gy1lkbfTBHtaPor3TJUEjCAQZmMLBAA216Egkk";
-    public static String Discord_CategoryID = "1037069990291058709";
+    public static String Discord_CategoryID = "1125786444678565948";
     public static Color Discord_Embed_Color = new Color(0x00F3FF);
 
     //Twitch

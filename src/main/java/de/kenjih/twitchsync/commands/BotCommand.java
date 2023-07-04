@@ -30,7 +30,7 @@ public class BotCommand extends Command implements TabExecutor {
 
             // collect information
             String status = DiscordBot.getInstance().getStatus();
-            String token = Values.Discord_BotToken.equals(Values.Discord_BotToken) +  "§agesetzt";
+            String token = Values.Discord_BotToken.equals(Values.Discord_BotToken) ? "§agesetzt": "ne";
             String guildId = "§e" + Values.Twitch_ClientId;
 
             // send information
