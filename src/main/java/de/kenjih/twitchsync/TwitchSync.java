@@ -1,5 +1,6 @@
 package de.kenjih.twitchsync;
 
+import de.kenjih.twitchsync.commands.BotCommand;
 import de.kenjih.twitchsync.commands.SyncCommand;
 import de.kenjih.twitchsync.discord.DiscordBot;
 import de.kenjih.twitchsync.discord.config.RegisteredConfig;
@@ -36,7 +37,7 @@ public final class TwitchSync extends Plugin {
         twitchBot = new TwitchBot();
         DiscordBot.getInstance().start();
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new SyncCommand());
-        getTwitchBot().twitchClient.getChat().sendMessage("Kenjih", "goofy gooflord");
+        ProxyServer.getInstance().getPluginManager().registerCommand(this, new BotCommand("bot", "command.bot"));
     }
 
     @Override

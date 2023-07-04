@@ -33,6 +33,10 @@ public class SyncCommand extends Command implements TabExecutor {
             }
         } else if(args.length == 1){
             if(!args[0].equalsIgnoreCase("unlink")) {
+                if (DiscordBot.getInstance().isOffline()) {
+                    p.sendMessage(Values.Prefix + "§7Es ist ein §cFehler §7aufgetreten >> §cDiscord-Bot offline");
+                    return;
+                }
                 String discordname = args[0];
                 TicketManager.getInstance().createSyncTicket(p.getUniqueId(), p.getName(), DiscordBot.jda.getUsersByName(discordname, true).get(0));
                 p.sendMessage(Values.Prefix + " §7Es wurde ein Ticket auf dem Kenjih-Discord erstellt. Bitte gehe auf dieses und gebe deinen Twitch-Namen ein und klicke daraufhin auf akzeptieren.");
@@ -53,7 +57,6 @@ public class SyncCommand extends Command implements TabExecutor {
                 p.sendMessage(Values.Prefix + " §7Du hast dich erfolgreich §cunlinked§7.");
             }
         }
-
     }
 
     @Override

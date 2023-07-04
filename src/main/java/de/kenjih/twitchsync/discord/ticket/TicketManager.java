@@ -112,6 +112,7 @@ public class TicketManager {
         return null;
     }
 
+
     public SyncTicket getSyncTicket(long userId) {
         for (Ticket ticket : tickets) {
             if (!(ticket instanceof SyncTicket syncTicket)) {
