@@ -6,6 +6,7 @@ import de.kenjih.twitchsync.discord.DiscordBot;
 import de.kenjih.twitchsync.discord.config.RegisteredConfig;
 import de.kenjih.twitchsync.sql.MySQL;
 import de.kenjih.twitchsync.sql.impl.SQLData;
+import de.kenjih.twitchsync.sql.impl.SQLTokens;
 import de.kenjih.twitchsync.twitch.TwitchBot;
 import de.kenjih.twitchsync.utils.Config;
 import net.md_5.bungee.api.ProxyServer;
@@ -21,6 +22,7 @@ public final class TwitchSync extends Plugin {
     private TwitchBot twitchBot;
     private MySQL sql;
     private SQLData sqlData;
+    private SQLTokens tokens;
     private static RegisteredConfig registeredConfig;
 
     @Override
@@ -29,12 +31,15 @@ public final class TwitchSync extends Plugin {
         config = new Config("config");
         sql = new MySQL();
         sqlData = new SQLData();
+        tokens = new SQLTokens();
         registeredConfig = new RegisteredConfig();
         sql.connect();
         if(sql.isConnected()){
             sqlData.createTable();
+            tokens.createTable();
         } else ProxyServer.getInstance().getLogger().warning("MySQL is not connected");
         twitchBot = new TwitchBot();
+
         DiscordBot.getInstance().start();
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new SyncCommand());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new BotCommand("bot", "command.bot"));
@@ -58,6 +63,10 @@ public final class TwitchSync extends Plugin {
 
     public SQLData getSQLData() {
         return sqlData;
+    }
+
+    public SQLTokens getTokens() {
+        return tokens;
     }
 
     public static ScheduledTask runAsync(Runnable runnable) {
