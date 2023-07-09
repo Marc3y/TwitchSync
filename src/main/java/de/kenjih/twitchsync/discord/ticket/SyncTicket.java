@@ -96,10 +96,17 @@ public class SyncTicket extends Ticket {
             if (history.isEmpty()){
                 System.out.println("lol");
                 interaction.reply("Du musst noch deine namen angeben").setEphemeral(true).queue();
+                return;
                 }
 
             // Accept ticket (register user)
             for (Message message : history){
+                if (message.equals("")){
+                    System.out.println("lol");
+                    interaction.reply("Du musst noch deine namen angeben").setEphemeral(true).queue();
+                    return;
+                }
+
                 TwitchSync.getRegisteredConfig().acceptRegistered(getUser(), getPlayerId(), getPlayerName(), message);
             }
             //TwitchSync.getRegisteredConfig().acceptRegistered(getUser(), getPlayerId(), getPlayerName());
