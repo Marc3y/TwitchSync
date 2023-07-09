@@ -93,12 +93,10 @@ public class SyncTicket extends Ticket {
 
             List<Message> history =  DiscordBot.jda.getGuildById(Values.Discord_GuildID).getTextChannelById(this.getTextChannel().getId()).getHistory().retrievePast(2).complete();
 
-            /*if (history.isEmpty()){
+            if (history.isEmpty()){
+                System.out.println("lol");
                 interaction.reply("Du musst noch deine namen angeben").setEphemeral(true).queue();
                 }
-
-             */
-
 
             // Accept ticket (register user)
             for (Message message : history){
