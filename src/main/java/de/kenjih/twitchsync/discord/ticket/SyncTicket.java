@@ -101,7 +101,7 @@ public class SyncTicket extends Ticket {
 
             // Accept ticket (register user)
             for (Message message : history){
-                if (message.equals("")){
+                if (message.getContentRaw().isEmpty()){
                     System.out.println("lol");
                     interaction.reply("Du musst noch deine namen angeben").setEphemeral(true).queue();
                     return;
@@ -112,7 +112,7 @@ public class SyncTicket extends Ticket {
             //TwitchSync.getRegisteredConfig().acceptRegistered(getUser(), getPlayerId(), getPlayerName());
 
             // close ticket
-            closeTicket();
+
         });
 
 

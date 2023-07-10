@@ -27,6 +27,7 @@ public class RegisteredConfig {
         //boolean created = createRegistered(user, playerId, playerName);
        final String username = twitchName.getContentRaw();
 
+
         // get player
         ProxiedPlayer player = ProxyServer.getInstance().getPlayer(playerId);
         System.out.println("name:"  + username);
@@ -46,6 +47,7 @@ public class RegisteredConfig {
                 //Send Message
             //    player.sendMessage(Values.Prefix + "§7Bei der Verknüpfung mit Discord ist ein §cFehler §7aufgetreten");
            // }
+
         }
     }
 
