@@ -19,9 +19,11 @@ public class Values {
     private static String Twitch_AccessToken = "vrq3seny93y4g1enesgp5nkgf15jq1";
     private static String Twitch_RefreshToken = "rqtivwksdu14f82f5nvi87v2irkxbh0nskxe7792x2rclg64l0";
 
+    public static String KenjihClientId = "oz9e2w4jy11dlqwfb3dpts0h2c0iih";
+    public static String KenjihClientSecret = "9jnq7dgsqac1p3mrplaoirld418ow7";
+
     public static String getTwitch_AccessToken(){
-        Config config = TwitchSync.getConfig();
-        return config.getConfig().contains("Twitch_AccessToken") ? config.getConfig().getString("Twitch_AccessToken") : Twitch_AccessToken;
+        return TwitchSync.getMongoManager().getToken("KenjihBot").getAccessToken();
     }
 
     //Minecraft

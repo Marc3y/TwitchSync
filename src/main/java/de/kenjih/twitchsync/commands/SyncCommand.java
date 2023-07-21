@@ -26,7 +26,7 @@ public class SyncCommand extends Command implements TabExecutor {
 
         if(!(s instanceof ProxiedPlayer)) return;
         ProxiedPlayer p = (ProxiedPlayer) s;
-        SyncUser user = TwitchSync.getInstance().getSQLData().getUser(p.getUniqueId().toString(), By.MINECRAFTUUID);
+        SyncUser user = TwitchSync.getMongoManager().getUser(p.getUniqueId().toString(), By.MINECRAFTUUID);
         if(args.length == 0) {
             for(String a : getConnectionInfoMessage(user)){
                 p.sendMessage(a);
@@ -53,7 +53,7 @@ public class SyncCommand extends Command implements TabExecutor {
                     p.sendMessage(Values.Prefix + " §cDu bist nicht gelinked.");
                     return;
                 }
-                TwitchSync.getInstance().getSQLData().unlink(user);
+                TwitchSync.getMongoManager().unlink(user);
                 p.sendMessage(Values.Prefix + " §7Du hast dich erfolgreich §cunlinked§7.");
             }
         }

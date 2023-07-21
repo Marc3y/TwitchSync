@@ -25,7 +25,7 @@ public class ChatEventHandler {
         SyncUser user = ConfirmCheck.getFromTwitchId(e.getUser().getId());
         ConfirmCheck.toConfirm.remove(user);
         user.setTwitchId(e.getUser().getId());
-        TwitchSync.getInstance().getSQLData().set(user);
+        TwitchSync.getMongoManager().set(user);
         e.getTwitchChat().sendMessage("Kenjih", "@" + e.getUser().getName() + ", die Verknüpfung zu Discord wurde erfolgreich herrgestellt (Dc: " + DiscordBot.jda.getGuildById(Values.Discord_GuildID).getMemberById(user.getDiscordId()).getEffectiveName() + ")");
     }
 

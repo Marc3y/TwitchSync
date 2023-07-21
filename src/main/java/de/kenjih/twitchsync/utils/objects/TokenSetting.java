@@ -1,5 +1,10 @@
 package de.kenjih.twitchsync.utils.objects;
 
+import com.github.philippheuer.credentialmanager.domain.OAuth2Credential;
+import com.github.twitch4j.auth.providers.TwitchIdentityProvider;
+
+import java.util.Optional;
+
 public class TokenSetting {
 
     private String id;
@@ -10,6 +15,20 @@ public class TokenSetting {
         this.id = id;
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
+    }
+
+    public TokenSetting refresh(String clientId, String clientSecret, String redirectUri){
+        TwitchIdentityProvider tip = new TwitchIdentityProvider(clientId, clientSecret, redirectUri);
+        OAuth2Credential credential = new OAuth2Credential("twitch", getAccessToken());
+        credential.setRefreshToken(getRefreshToken());
+        Optional<OAuth2Credential> newCredential = tip.refreshCredential(credential);
+        if(!newCredential.isPresent()){
+            System.out.println("Token refresh of id " + getId() + " failed");
+            return this;
+        }
+        setAccessToken(newCredential.get().getAccessToken());
+        setRefreshToken(newCredential.get().getRefreshToken());
+        return this;
     }
 
     public String getId() {
